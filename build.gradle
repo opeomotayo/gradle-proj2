@@ -13,7 +13,7 @@ buildscript {
 }
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
+apply plugin: 'org.springframework.boot' version '2.5.0'
 apply plugin: 'war'
 apply plugin: "org.sonarqube"
 test {
