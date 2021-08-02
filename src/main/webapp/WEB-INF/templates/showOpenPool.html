@@ -1,0 +1,28 @@
+<div class="md-padding" id="popupContainer" ng-controller="openPoolController" ng-init="getOpenPoolRecords('onload')">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Open Pool Resources
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="form-horizontal">
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+					class="myGrid manage-open-pool">
+					<div class="watermark" ng-show="!gridOptions.data.length">No
+						data available</div>
+				</div>
+			</div>
+		</div>
+        <div  role="alert" class="alertMsg">
+           <span style="color: red; ">{{alertMsg}}</span>
+        </div>
+	</div>
+</div>

@@ -1,0 +1,49 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+	<ul class="sidebar-nav col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+		
+
+            <!-- <span ng-click="toggleManage()" style="color: gainsboro; cursor: pointer;"><i class="fa fa-users" style="font-size: 1.5em; margin-right: 15px;" aria-hidden="true"></i>Manage Group <i class="fa fa-caret-down" style="margin-left: 15px;"></i></span>
+			<li ng-repeat="manageItem in manageGroup"> 
+					<a href="#" ng-hide="custom" class="navbarMenu" ng-click="setTemplateUrl(manageItem.path)"><i
+								class="{{manageItem.icon}}" style="font-size: 1.5em;"
+								aria-hidden="false"> </i> <span style="margin-left: 15px;">{{manageItem.menu}}</span></a></i> 
+			</li> -->
+
+		<li> <a href="#" ng-click="toggleManage()" ng-show="manageGroup.length > 0"> <i class="fa fa-users" aria-hidden="true"></i> <span>Manage Group</span> <i class="fa fa-angle-down right"></i></a> 
+			<ul ng-hide="custom" class="manageGroup">
+					
+				<li ng-repeat="manageItem in manageGroup"> 
+					<a href="#" class="navbarMenu" ng-click="setTemplateUrl(manageItem.path)"><i
+								class="{{manageItem.icon}}"
+								aria-hidden="false"> </i> <span>{{manageItem.menu}}</span></a></i> 
+						</li>
+						 
+			</ul>
+				</li>
+						<li> <a href="#" ng-click="toggleReport()" ng-show="reportsGroup.length > 0"> <i class="fa fa-file" aria-hidden="true"></i> <span>Reports</span> <i class="fa fa-angle-down right"></i></a> 
+			<ul ng-hide="customReport" class="reportsGroup">
+					
+				<li ng-repeat="reportItem in reportsGroup"> 
+					<a href="#" class="navbarMenu" ng-click="setTemplateUrl(reportItem.path)"><i
+								class="{{reportItem.icon}}"
+								aria-hidden="false"> </i> <span>{{reportItem.menu}}</span></a></i> 
+						</li>
+						 
+			</ul>
+				</li>
+
+				<li ng-repeat="nonManageItem in nonManageGroup" ng-click="togglenonManage()" class="nonManageGroup">
+					<a href="#" class="navbarMenu" ng-click="setTemplateUrl(nonManageItem.path)">
+						<i class="{{nonManageItem.icon}}" aria-hidden="false"></i>
+						<span>{{nonManageItem.menu}}</span>
+					</a>
+				</li>
+	
+		<!-- <li ng-repeat="menuItem in menuItems"><a href="#" class="navbarMenu"
+			ng-click="setTemplateUrl(menuItem.path)"><i
+				class="{{menuItem.icon}}" style="font-size: 1.5em;"
+				aria-hidden="false"> </i> <span style="margin-left: 15px;">{{menuItem.menu}}</span></a></li> -->
+		
+	</ul>
+</div>

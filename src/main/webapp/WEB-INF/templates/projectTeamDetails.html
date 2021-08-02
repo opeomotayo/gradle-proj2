@@ -1,0 +1,347 @@
+<md-dialog aria-label="Team Details" style="height:auto;" class="viewTeamDetails md-dialog-custom-height" ng-init="getEmployeeDetails(); getAllEmployees();" id="projectTeamDetails" >
+    <form ng-cloak name="myForm ">
+        <md-toolbar>
+            <div class="md-toolbar-tools " style="background: cadetblue; ">
+                <h2>{{projectName}} Team </h2>
+                <span flex></span>
+                <md-button class="md-icon-button " ng-click="cancelDialog() ">
+                    <i class="fa fa-times fa-2x " style="margin-top: 5px; font-size: 1.5em; float: left "></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <section layout="row" style="background-color: #fafafa;padding-top: 10px;" layout-sm="column" layout-align="end end" layout-wrap>
+        	<md-button class="md-raised " class="pull-right" data-ng-click="addTab()" style="width:120px;background: cadetblue;color:white; " ng-show="!isSecondTab">Add</md-button>
+        </section>
+        <md-content style="height:1100px !important">
+            <md-tabs md-dynamic-height=" " md-border-bottom=" " md-selected="selectedTab">
+                <md-tab label="Team Details ">
+                    <md-content class="md-padding ">
+                        <md-dialog-content>
+                            <div class="md-dialog-content " style="padding:0px">
+                                <div class="form-group ">
+                                    <div class="row col-lg-12 " style="margin-left: 0px; ">
+                                        <div class="row col-lg-12 col-xs-12 ">
+                                            <div class="col-xs-6 text-left ">
+<!--                                                 <p>
+                                                    <b>Project Name:</b> {{projectName}}
+                                                </p> -->
+                                                <p>
+                                                    <b>Project Start Date:</b> {{projectStartDate | date : 'dd-MMM-yyyy'}}
+                                                </p>
+                                                <p>
+                                                	 <b>Project End Date:</b> {{projectEndDate | date : 'dd-MMM-yyyy'}}
+                                                </p>
+                                            </div>
+                                            <div class="col-xs-6 text-right ">
+                                                <p>
+                                                    <b>Manager Name: </b><span ng-repeat="manager in deliveryLeadIds">{{manager.employeeName}}<span ng-hide="$last">,</span></span>
+                                                </p>
+                                            </div>
+
+                                        </div>
+<div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-12"></div>
+	<div  class="row col-lg-12  no-padding" style="margin-left: 0px;">
+	<input type="radio" ng-model="status" value="Active" ng-click="getTeamMates()"> Active 
+	<input type="radio" ng-model="status" value="InActive" ng-click="getTeamMates()"> Inactive
+	<input type="radio" ng-model="status" value="Proposed" ng-click="getTeamMates()"> Proposed
+	<input type="radio" ng-model="status" value="All" ng-click="getTeamMates()"> All
+	
+	</div>
+                                        <div id="gridTest" class="view-team-details-grid" ui-grid="gridOptions " ui-grid-edit ui-grid-pagination style="width:99%;height:230px;margin-left:10px; ">
+                                            <div class="watermark " ng-show="!gridOptions.data.length ">No data available</div>
+                                        </div>
+                                        <div ng-if ='templateTitle == "View"' role="alert" class="alertMsg">
+                                            <span style="color: red; ">{{alertMsg}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-dialog-content>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Add Team Mate" id="tab2">
+                    <md-content class="md-padding ">
+                        <form ng-cloak name="myForm" id="myForm">
+                            <!-- <md-toolbar>
+                                <div class="md-toolbar-tools " style="background: cadetblue; ">
+                                    <h2>Add Team Mate </h2>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button " ng-click="cancel() ">
+                                        <i class="fa fa-times fa-2x " style="margin-top: 5px; font-size: 1.5em; float: left "></i>
+                                    </md-button>
+                                </div>
+                            </md-toolbar> -->
+                            <div class="md-dialog-content ">
+                                <div class="form-group ">
+                                    <div class="row col-lg-12 " style="margin-left: 0px; ">
+<!--                                         <div class="row col-lg-12 col-xs-12 ">
+  		                                     <div class="col-xs-6 text-center ">
+                                                <p>
+                                                    <b>Project Name:</b> {{projectName}}
+                                                </p>
+                                            </div> 
+                                            <div class="col-xs-6 text-center ">
+                                                <p>
+                                                    <b>Manager Name: </b><span ng-repeat="manager in deliveryLeadIds">{{manager.employeeName}}<span ng-hide="$last">,</span></span>
+                                                </p>
+                                            </div>
+                                        </div> -->
+                                        <table>
+                                            <tr>
+                                                <td>Select a Employee </td>
+                                                <td>
+                                                    <md-select ng-model="employeeModel" data-md-container-class="selectHeader" md-selected-text="getEmployeeSelected() " id="selectEmp"
+                                                        name="employeeModel">
+                                                        <md-select-header class="selectHeaderChild header-spacing" layout="column">
+                                                            <input ng-model="searchTerm" type="search" id="search" ng-keydown="updateSearch($event)" ng-model-options="{debounce: {'default': 500, 'blur': 0}}"
+                                                                placeholder="Please search for a employee" class="searchBoxHeader demo-header-searchbox md-text search-spacingleft"
+                                                            />
+                                                            <span class="glyphicon glyphicon-remove close-mdselect" ng-click="closeSelectBox()"></span>
+                                                        </md-select-header>
+                                                        <md-optgroup label="Employee " class="optionScroll">
+                                                            <md-option ng-value="employee " ng-repeat="employee in employeeList | filter:searchFilter">{{employee.employeeName}}</md-option>
+                                                        </md-optgroup>
+                                                    </md-select>
+                                                </td>
+                                            </tr>
+<!--                                             <tr>
+                                                <td class="Employee">Employee Name : </td>
+                                                <td>{{employeeModel.employeeName}}</td>
+                                            </tr> -->
+                                            <tr>
+                                                <td class="Employee"> Employee Id :</td>
+                                                <td>{{employeeModel.employeeId}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Employee">Email Id :</td>
+                                                <td>{{employeeModel.emailId}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Employee">Designation : </td>
+                                                <td>{{employeeModel.designation}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Employee"> Assigned Role</td>
+                                                <td>
+                                                    <md-select ng-model="employeeRole" md-selected-text="getSelectedEmpRole()" id="empRole">
+                                                        <md-optgroup label="employee role">
+                                                            <md-option ng-value="empRole" ng-repeat="empRole in employeeRoles">{{empRole}}</md-option>
+                                                        </md-optgroup>
+                                                    </md-select>
+                                                </td>
+                                            </tr>
+<!--                                             <tr>
+                                                <td class="Employee">Shift</td>
+                                                <td>
+                                                    <md-select ng-model="employeeShift" md-selected-text="getSelectedEmpShift()" id="empShift">
+                                                        <md-optgroup label="employee shift">
+                                                            <md-option ng-value="empShift" ng-repeat="empShift in employeeShifts">{{empShift}}</md-option>
+                                                        </md-optgroup>
+                                                    </md-select>
+                                                </td>
+                                            </tr> -->
+                                             <tr>
+                                                <td class="Employee">Allocation Status</td>
+                                                <td>
+                                                    <md-select ng-model="empAllocationStatus " md-selected-text="getSelectedAllocationStatus()" id="empAllocationStatus" name="empAllocationStatus" ng-change="changeBillableStatusList()">
+                                                        <md-optgroup label="allocation statuses ">
+                                                            <md-option ng-value="allocationStatus " ng-repeat="allocationStatus in allocationStatuses ">{{allocationStatus}}</md-option>
+                                                        </md-optgroup>
+                                                    </md-select>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="empAllocationStatus">
+                                                <td class="Employee">Billability Status</td>
+                                                <td>
+                                                    <md-select ng-model="empBillableStatus " md-selected-text="getSelectedBillableStatus() " id="empBillableStatus" name="empBillableStatus" ng-change="changeEmpBillableStatus()">
+                                                        <md-optgroup label="billable statuses ">
+                                                            <md-option ng-value="billableStatus " ng-repeat="billableStatus in billableStatuses">{{billableStatus}}</md-option>
+                                                        </md-optgroup>
+                                                    </md-select>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="empBillableStatus">
+                                                <td class="Employee">{{empBillableStatus}} Start Date </td>
+                                                <td>
+                                                    <md-datepicker ng-model="newBillingStartDate" md-placeholder="Please select Date " id="newBillingStartDate " md-min-date="minBillingStartDate"
+                                                        md-max-date="maxBillingStartDate" onkeydown="return false " ng-change="currentBillabilityDateChange()" name="newBillingStartDate"></md-datepicker>
+                                                </td>
+                                            </tr>
+<!--                                             <tr>
+                                                <td class="Employee">Start Date</td>
+                                                <td>
+                                                    <md-datepicker ng-model="startDate" ng-disabled = "true" md-placeholder="Please select Date" id="startDate " md-min-date="minDate " md-max-date="maxDate "
+                                                        onkeydown="return false " name="startDate"></md-datepicker>
+                                                </td>
+                                            </tr> -->
+                                        
+                                            <tr ng-show="empBillableStatus">
+                                                <td class="Employee">{{empBillableStatus}} End Date</td>
+                                                <td>
+                                                    <md-datepicker ng-model="endDate" md-placeholder="Please select Date" id="endDate " md-min-date="newBillingStartDate " md-max-date="maxBillingEndDate"
+                                                        onkeydown="return false " name="endDate"></md-datepicker>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                            <td></td>
+                                            <td class="Employee"><md-checkbox ng-model="toggleAlias" ng-change="changeCheckboxValue(toggleAlias)" 
+                                            aria-label="aliasCheck" class="md-primary" style="margin: 10px 0px 10px -7.5pc;" id="selectAlias">
+                                           Are you adding this resource on behalf of any other resource ?</md-checkbox></td>
+                                            </tr>
+                                                <tr ng-show="toggleAlias">
+                                                <td>Behalf Of </td>
+                                                <td>
+                                                    <md-select ng-model="aliasModel" data-md-container-class="selectHeader" md-selected-text="getSelectedAlias() " id="selectAlias"
+                                                        name="aliasModel">
+                                                        <md-select-header class="selectHeaderChild header-spacing" layout="column">
+                                                            <input ng-model="searchAliasTerm" type="search" id="search" ng-keydown="updateSearch($event)" ng-model-options="{debounce: {'default': 500, 'blur': 0}}"
+                                                                placeholder="Please search for an alias resource" class="searchBoxHeader demo-header-searchbox md-text search-spacingleft"
+                                                            />
+                                                            <span class="glyphicon glyphicon-remove close-mdselect" ng-click="closeSelectBox()"></span>
+                                                        </md-select-header>
+                                                        <md-optgroup label="Alias " class="optionScroll">
+                                                            <md-option ng-value="alias " ng-repeat="alias in employeeList | filter:aliasFilter">{{alias.employeeName}}</md-option>
+                                                        </md-optgroup>
+                                                    </md-select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <div ng-if ='templateTitle == "Add"' role="alert">
+                                            <span style="color: red; ">{{alertMsg}}</span>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <md-dialog-actions layout="row ">
+                                            <md-button class="md-raised " data-ng-click="validateFields(templateTitle) " style="width:120px;background: cadetblue;color:white; ">Add
+                                            </md-button>
+                                            <md-button class="md-raised " ng-click="cancelTab() " style="width:120px;background: cadetblue;color:white; ">
+                                                Cancel </md-button>
+                                        </md-dialog-actions>
+                                        </form>
+                                        </md-content>
+                                        </md-tab>
+                                        <md-tab label="Update Team Mate" id="tab3">
+                                            <md-content class="md-padding ">
+                                       <form ng-cloak name="myForm" id="myForm">
+                                          <div class="md-dialog-content ">
+                                            <div class="panel-group">
+												<div class="panel panel-default">
+													<div class="panel-heading">Employee Details</div>
+													<div class="panel-body update-Teammate">
+                                                         <div class="form-inline col-lg-12">
+															<div class="row">
+																<div class="form-group row col-lg-6 col-md-6">
+																		<label class="Employee col-lg-5">Employee Name :</label>
+							       										<span>{{employeeModel.employeeName}}</span>
+																</div>
+																<div class="form-group col-lg-6 col-md-6">
+																		<label class="Employee">Employee Id :</label>
+							       										<span>{{employeeModel.employeeId}}</span>
+																</div>
+															</div>
+														</div>
+													   <div class="form-inline col-lg-12">
+															<div class="row">
+																<div class="form-group row col-lg-6 col-md-6">
+																		<label class="Employee col-lg-5">Designation : </label>
+							       										<span>{{employeeModel.designation}}</span>
+																</div>
+ 																<div class="form-group col-lg-6 col-md-6">
+																		<label class="Employee">Email Id :</label>
+							       										<span>{{employeeModel.emailId}}</span>
+																</div> 
+															</div>
+														</div>
+													<div class="form-inline col-lg-12">
+													<div class="row">
+													<div class="form-group row col-lg-6 col-md-6 update-teammate-dropdown">
+													  <label class="Employee col-lg-5">Assigned Role : </label>
+                                                                    <md-select ng-model="employeeRole" md-selected-text="getSelectedEmpRole()" id="empRole">
+                                                                         <md-optgroup label="employee role">
+                                                                              <md-option ng-value="empRole" ng-repeat="empRole in employeeRoles">{{empRole}}</md-option>
+                                                                         </md-optgroup>
+                                                                    </md-select>
+															</div>
+															</div>
+														</div>
+													</div>
+												</div>
+										        <div class="panel panel-default">
+										      		<div class="panel-heading">Resource Allocation</div>
+										     		<div class="panel-body">
+										     		  <div class="form-inline col-lg-12">
+															<div class="row">
+																<div class="form-group row col-lg-6 col-md-6 update-teammate-dropdown">
+																		<label class="Employee col-lg-5">Billability Status : </label>
+							       						                   <md-select ng-model="empBillableStatus " md-selected-text="getSelectedBillableStatus() " id="empBillableStatus" name="empBillableStatus" ng-change="changeEmpBillableStatus()" >
+                                                                                <md-optgroup label="billable statuses ">
+                                                                                   <md-option ng-value="billableStatus " ng-repeat="billableStatus in billableStatuses ">{{billableStatus}}</md-option>
+                                                                                </md-optgroup>
+                                                                            </md-select>
+																</div>
+																<div class="form-group col-lg-6 col-md-6" style="margin-top: -5px;">
+																	<label class="Employee">{{empBillableStatus}} Start Date :</label>
+							       									<md-datepicker ng-model="newBillingStartDate" md-placeholder="Plase select Date " id="newBillingStartDate " md-min-date="minDate "
+                                                                              md-max-date="maxDate " onkeydown="return false "
+                                                                               name="newBillingStartDate">
+                                                                    </md-datepicker>
+																</div>
+															</div>
+														</div>
+													<div class="form-inline col-lg-12">
+															<div class="row">
+																<div class="form-group col-lg-6 col-md-6">
+																		<label class="Employee">{{empBillableStatus}} End Date :</label>
+																		<md-datepicker ng-model="endDate " md-placeholder="Please select Date" id="endDate " md-min-date="minDate " md-max-date="maxDate "
+                                                                          onkeydown="return false " name="endDate"></md-datepicker>
+																</div>
+														 <md-button class="md-raised " ng-if="!showUpdateBtn" data-ng-click="validateFields('Update') " style="width:120px;background: #3f51b5;color:white; ">Add </md-button>
+														  <md-button class="md-raised " ng-if="showUpdateBtn" data-ng-click="validateFields('Update') " style="width:120px;background: #3f51b5;color:white; ">Update </md-button>
+															</div>
+														</div>
+										     		</div>
+										     		<div class="form-inline col-lg-12 billable-table">
+												<div class="row">
+												<table class="table table-bordered table-hover">
+												    <thead>
+												        <tr>
+												           <th>Billable Status</th>
+												           <th>Start Date</th>
+												           <th>End Date</th>
+												           <th>Edit</th>
+												         </tr>
+												    </thead>
+												    <tbody>
+												        <tr ng-repeat="status in empBillableStatuses">
+												           <td>{{status.billableStatus}}</td>
+												           <td>{{status.billableStartDate | date : 'dd-MMM-yyyy'}}</td>
+												           <td>{{status.billableEndDate | date : 'dd-MMM-yyyy'}}</td>
+												           <td><i class="fa fa-pencil-square-o fa-2x" ng-click="getEditTeammate(status)" ng-show="empBillableStatuses.length-1 == $index" aria-hidden="true" style="font-size:1.5em;margin-top:3px;cursor:pointer;"></i></td>
+												                                                
+												        </tr>
+												     </tbody>
+												</table>
+												</div>
+												</div>
+												</div>
+										    </div>
+
+
+										    
+                                        <div role="alert ">
+                                            <span class="error " style="color: red; ">{{alertMsg}}</span>
+                                      </div>
+                                <md-dialog-actions layout="row ">
+<!--                                     <md-button class="md-raised " data-ng-click="validateFields(templateTitle) " style="width:120px;background: cadetblue;color:white; ">Update
+                                    </md-button> -->
+                                    <md-button class="md-raised " ng-click="cancelTab() " style="width:120px;background: cadetblue;color:white; ">
+                                        Cancel </md-button>
+                                </md-dialog-actions>
+                        </form>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </form>
+</md-dialog>

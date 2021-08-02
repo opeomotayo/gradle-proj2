@@ -1,0 +1,31 @@
+<div class="md-padding" style="width: 100%; padding: 3px 0px 0px 0px;"
+	id="popupContainer333" ng-controller="assignRoleController"
+	ng-init="getUserRoles()">
+
+
+
+<button ng-click="getUserRoles()">click Me</button>
+<md-button class="md-icon-button" ng-click="getUserRoles()"> <i
+			class="fa fa-times fa-2x"
+			style="margin-top: 5px; font-size: 1.5em; float: left">ReportData</i> </md-button>
+<table>
+<tr>
+    <td><div id="gridTest1" ui-grid="gridOptionsReport" ui-grid-pagination 
+			class="" style="width:99%;height:370px;margin-left:0px;">
+			<div class="watermark" ng-show="!gridOptionsReport.data.length">No
+				data available</div>
+
+		</div></td>
+  
+  </tr>
+  <tr>
+    <td><div id="container1Pie" style="width:99%;height:370px;margin-left:0px;min-width: 800px;
+	max-width: 800px;">
+			</div></td>
+  </tr>
+  
+</table>
+
+		</div>
+
+		

@@ -1,0 +1,273 @@
+<md-dialog aria-label="Role Template" class="new-role-template">
+
+<form ng-cloak name="myForm">
+	<md-toolbar>
+	<div class="md-toolbar-tools" style="background: cadetblue;">
+		<h2>{{templateTitle}} Employee</h2>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="cancel()"> <i
+			class="fa fa-times fa-2x"
+			style="margin-top: 5px; font-size: 1.5em; float: left"></i> </md-button>
+	</div>
+	</md-toolbar>
+
+	<md-dialog-content  class="new-role-dialog-content">
+
+	<div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+			<h4>Personal Info</h4>
+			<div class="form-group">
+				<table>
+					<tr>
+						<td colspan="4"><b>Emp ID:</b><span class="mandatory"></span></td>
+						<td colspan="8"><input type="text" class="form-control"
+							id="empId" name="employeeId" ng-model="empId"
+							placeholder="Employee ID" ng-blur="validateEmpId()" 
+							ng-disabled="isDisabled" /></td><!-- ng-blur="validateEmpId()'' -->
+					<tr>
+					<tr>
+						<td colspan="4"><b>Employee Name:</b><span class="mandatory"></span></td>
+						<td colspan="8"><input type="text" class="form-control" 
+							id="empName" name="employeeName" ng-model="empName"
+							placeholder="Employee Name" ng-blur="validateEmpName()"/></td><!-- ng-blur="validateEmpName()"-->
+					</tr>
+					<tr>
+						<td colspan="-10"><b>Gender:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="gender" ng-blur="validateMessage()"  name="gender" 
+								md-selected-text="getSelectedGender()" id="gender"><md-optgroup
+								label="Select Gender">
+							<md-option ng-model="gender" value="Male">Male </md-option> <md-option
+								ng-model="gender" value="Female">Female</md-option></md-optgroup> </md-select></td>
+					</tr>
+					<tr>
+						<td colspan="4"><b>Mobile No:</b><span class="mandatory"></span></td>
+						<td colspan="8"><input type="text" class="form-control"
+							id="empMobileNo" name="mobileNo" ng-model="empMobileNo"
+							placeholder="Mobile No" ng-blur="validateMobileNumber()"
+						    style="text-transform: lowercase;"/>
+					</tr>
+					<tr>
+						<td colspan="4"><b>Email:</b><span class="mandatory"></span></td>
+						<td colspan="8"><input type="text" class="form-control"
+							id="empEmail" name="emailId" ng-model="empEmail"
+							placeholder="Email ID" ng-blur="validateMessage('email')"
+							ng-disabled="isDisabled" style="text-transform: lowercase;"/></td><!--ng-blur="validateEmailId()"-->
+					</tr>
+
+					<tr>
+						<td colspan="4"><b>Date of Joining:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-datepicker ng-model="dateOfJoining" id="dateOfJoining"
+							name="dateOfJoining" md-placeholder="Date of Joining" md-min-date="minDate"
+								md-max-date="maxDate" onkeydown="return false" ng-blur="validateMessage()"></md-datepicker>
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan="4"><b>Date of Birth:</b></td>
+						<td colspan="8"><md-datepicker ng-model="dateOfBirth" id="dateOfBirth"  name="dateOfBirth"
+								md-placeholder="Date of Birth" md-min-date="minDate"
+								md-max-date="maxDate" onkeydown="return false"></md-datepicker>
+						</td>
+					</tr>
+
+					<tr ng-show="templateTitle != 'Add'">
+						<td colspan="4"><b>Employment Status {{templateTitle}}:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="empStatus" name ="empStatus" 
+								md-selected-text="getSelectedEmpStatus()" id="empStatus">
+							<md-optgroup label="Employment Status"> <md-option
+								ng-value="status" ng-repeat="status in empStatuses">{{status}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+					<tr ng-show="empStatus == 'In Active'">
+						<td colspan="4"><b>Employee Exit Date:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-datepicker ng-model="exitDate" name="endDate"
+								md-placeholder="Exit Date" md-min-date="minDate"
+								md-max-date="maxDate" onkeydown="return false"></md-datepicker>
+						</td>
+					</tr>
+					<tr ng-show="empStatus == 'Active' && templateTitle != 'Add'" >
+						<td colspan="4"><b>Select Sub Status :</b></td>
+						<td colspan="8"><md-select ng-model="empSubStatus" name ="empSubStatus"
+							 placeholder ="Select a Sub Status Type" id="empSubStatus" ng-change="changeEmpSubStatus()" ng-disabled="disableSubStatus">
+							<md-optgroup label="Sub Status Type"> 
+							<md-option  ng-value ="None">None</md-option> 
+							<md-option ng-value="status" ng-repeat="status in empSubStatuses">{{status}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+					<!-- <tr ng-show="empStatus == 'Active' && templateTitle != 'Add' && empSubStatus != null 
+					|| subStatusStartDate !=null || subStatusEndDate !=null"   >
+						<td colspan="4"><b>Sub Status :</b></td>
+						<td colspan="8"> {{ empSubStatus }} </td>
+					</tr>  -->
+					<tr ng-show="empSubStatus != null && empSubStatus != '' && empStatus == 'Active' && templateTitle != 'Add'">
+						<td colspan="4"><b>{{empSubStatus}} Start Date:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-datepicker ng-model="subStatusStartDate" name="subStatusStartDate" id="subStatusStartDate"
+								md-placeholder="Start Date" md-min-date="minDate"
+								md-max-date="maxDate" onkeydown="return false" ng-blur="validateMessage()"></md-datepicker>
+						</td>
+					</tr>
+					<tr ng-show="empSubStatus != null && empSubStatus != '' && empStatus == 'Active' && templateTitle != 'Add'">
+						<td colspan="4"><b>{{empSubStatus}} End Date:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-datepicker ng-model="subStatusEndDate" name="subStatusEndDate"
+								md-placeholder="End Date" md-min-date="minDate" id="subStatusEndDate"
+								md-max-date="maxDate" onkeydown="return false" ng-blur="validateMessage()"></md-datepicker>
+						</td>
+					</tr>
+					
+					<tr ng-show="empSubStatus != null && empSubStatus != '' && empStatus == 'Active' && templateTitle != 'Add'">
+						<td colspan="4">
+						<md-button class="md-raised" ng-show="disableSubStatus" ng-click="endSubStatus()" style="margin-top:10px;width:142px;background: #3f51b5;color:white;">
+								End Sub status </md-button>
+						</td>
+						
+					</tr>
+
+<!-- 					<tr>
+						<td colspan="12">
+							<div role="alert">
+								<span ng-if="errorMessage" class="error" style="color: red;">{{alertMsg}}</span>
+							</div>
+						</td>
+					</tr> -->
+
+				</table>
+			</div>
+			<!--form-group-->
+		</div>
+		 <!---col-lg-4 col-md-4 col-sm-4 col-xs-12-->
+
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+			<h4>Organization Info</h4>
+			<div class="form-group">
+				<table>
+					
+					<tr>
+						<td colspan="4"><b>Functional Group:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-blur="validateMessage()" ng-model="functionalGroup"
+								md-selected-text="getSelectedFunctionalGroup()" name="functionalGroup"
+								id="functionalGroup"> <md-optgroup
+								label="Functional Group"> <md-option
+								ng-value="functionalGroup"
+								ng-repeat="functionalGroup in functionalGroups">{{functionalGroup}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+				
+
+					<tr>
+						<td colspan="4"><b>Designation:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="designation" ng-blur="validateMessage()" name="designation"
+								md-selected-text="getDesignationText()" id="designation">
+							<md-optgroup label="designations"> <md-option
+								ng-value="designation" ng-repeat="designation in designations">{{designation}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+					<tr>
+						<td colspan="4"><b>Country:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="empCountry" ng-blur="validateMessage()" name="empCountry"
+												   md-selected-text="getSelectedCountry()" id="empCountry">
+							<md-optgroup label="countrys"> <md-option
+									ng-value="country" ng-repeat="country in countrys">{{country}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+
+					<tr>
+						<td colspan="4"><b>Work &nbsp;Location:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="empLocation" ng-blur="validateMessage()" name="empLocation"
+								md-selected-text="getSelectedLocation()" id="empLocation">
+							<md-optgroup label="locations"> <md-option
+								ng-value="location" ng-repeat="location in locations">{{location}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+
+					<tr>
+						<td colspan="4"><b>Employment Type:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="employmentType" ng-blur="validateMessage()" name="employmentType"
+								md-selected-text="getSelectedEmploymentType()"
+								id="employmentType"> <md-optgroup
+								label="Employment Type"> <md-option
+								ng-value="employmentType"
+								ng-repeat="employmentType in employmentTypes">{{employmentType}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+				</table>
+			</div>
+			<!--form-group-->
+		</div>
+		<!---col-lg-4 col-md-4 col-sm-4 col-xs-12-->
+
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+			<h4>Other Info</h4>
+			<div class="form-group">
+				<table>
+					<!-- <tr>
+						<td colspan="4"><b>Domain:</b></td>
+						<td colspan="8"><md-select ng-model="domain"
+								md-selected-text="getSelectedDomain()" id="domain">
+							<md-optgroup label="Domain"> <md-option
+								ng-value="domain" ng-repeat="domain in domains">{{domain}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr> -->
+
+					 <tr>
+						<td colspan="4"><b>Org Role:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="empRole" ng-blur="validateMessage()"
+								md-selected-text="getSelectedRole()" name="role" id="empRole"> <md-optgroup
+								label="roles"> <md-option ng-value="role"
+								ng-repeat="role in roles">{{role}}</md-option> </md-optgroup> </md-select></td>
+					</tr>
+
+					<tr>
+						<td colspan="1"><b>HasPassport:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="hasPassort" ng-blur="validateMessage()"
+								id="hasPassort"> <md-option ng-model="hasPassort" name="hasPassort"
+								value="Yes">Yes </md-option> <md-option ng-model="hasPassort"
+								value="No">No</md-option> </md-select></td>
+					</tr>
+					<tr ng-show="hasPassort == 'Yes'">
+						<td colspan="4"><b>Passport Expiry Date:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-datepicker ng-model="passportExpiryDate"
+							id="passportExpiryDate"	md-placeholder="Passport Expiry Date" md-min-date="minDate"
+							name="passportExpiryDate"	md-max-date="maxDate" onkeydown="return false"></md-datepicker>
+						</td>
+					</tr>
+
+					<tr ng-show="hasPassort == 'Yes'">
+						<td colspan="1"><b>Has B1 Visa:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-select ng-model="hasB1" id="hasB1" ng-blur="validateMessage()" name="hasB1">
+							<md-option ng-model="hasB1" value="Yes">Yes </md-option> <md-option
+								ng-model="hasB1" value="No">No</md-option> </md-select></td>
+					</tr>
+
+					<tr ng-show="hasB1 == 'Yes' && hasPassort == 'Yes'">
+						<td colspan="4"><b>B1 Expiry Date:</b><span class="mandatory"></span></td>
+						<td colspan="8"><md-datepicker ng-model="b1ExpiryDate" name="b1ExpiryDate"
+							id="b1ExpiryDate" md-placeholder="B1 Expiry Date" md-min-date="minDate"
+								md-max-date="maxDate" onkeydown="return false"></md-datepicker>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--orm-group-->
+		</div>
+		<!---col-lg-4 col-md-4 col-sm-4 col-xs-12-->
+	</div>
+
+	<!--row--> </md-dialog-content>
+
+	<md-dialog-actions layout="row" style="margin-bottom:20px;"> 
+      	<div role="alert" class="col-sm-8 error-msg">
+			<span ng-if="errorMessage" class="error" style="text-align:left;">{{alertMsg}}</span>
+		</div>
+		<div class="col-sm-4 action-content">
+	<md-button
+		class="md-raised" data-ng-click="validateFields(); button=true" 
+		style="width:120px;background: cadetblue;color:white;">
+	{{templateTitle}} </md-button>
+	 <md-button class="md-raised" ng-click="cancel()"
+		style="width:120px;background: cadetblue;color:white;">
+	Cancel </md-button>
+	</div>
+	 </md-dialog-actions>
+</form>
+</md-dialog>
+

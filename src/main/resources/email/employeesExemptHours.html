@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Employee Details Less than 8 hours IN Work area</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+
+table#alter th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+}
+table#alter tr:nth-child(even) {
+    background-color: #eee;
+}
+table#alter tr:nth-child(odd) {
+    background-color: #fff;
+}
+table#alter th {
+    color: white;
+    background-color: gray;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0;">
+<table width="70%" cellpadding="10" cellspacing="0" style="border: 1px dotted #ccc; border-top: none; background: #f8f8f8; font-family: sans-serif; font-size: 14px; margin: 0 auto;">
+    <tr style="background: #00b4e6; color:#fff; font-size: 40px;">
+        <td>nisum</td>
+    </tr>
+    <tr>
+        <td align="center" style="border-bottom: 1px dotted #ccc; font-size: 20px;">Update on lower productive hours</td>
+    </tr>
+
+    <tr>
+        <td style="padding: 10px 10px 0 20px; width: 100px; ">Hi <b>Managers,</b>
+             <p>
+                A quick recap of last week work hours of below mentioned associates, who have put in lesser hours from your respective functional/delivery orgs,
+this data is just to help us to over come the challenges of unavailablity of resources during the required office hours.
+</p>
+<p>
+	<b>Note : </b>Always there might be exceptions like early leaving with permissions, emergency sick leaves, due to late evening calls.
+</p>
+        </td>
+    </tr>
+    <tr>
+        <td ><table align = "center" id="alter">
+            <tr>
+            	<th style = "padding: 10px;">Employee ID </th>
+            	<th style = "padding: 10px;">Employee Name</th>
+            	<th style = "padding: 10px;">Avg. Hours</th>
+            	<th style = "padding: 10px;">Functional Group</th>
+            	<th style = "padding: 10px;">Delivery Manager(s)</th>
+            	<th style = "padding: 10px; width: 45%;">Orphan Login Hours</th></tr>
+employeeList
+</table> </td>
+    </tr>
+    <tr>
+        <td >
+            Regards, <br />
+            Nisum Consulting
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
+
+

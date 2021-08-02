@@ -1,0 +1,241 @@
+#header {
+	width: 100%;
+	height: 8%;
+	background-color: darkslategray;
+}
+
+#sidebar-left {
+	float: left;
+	width: 20%;
+	height: 87.5%;
+}
+#main {
+	float: left;
+	width: 80%;
+	height: 87.5%;
+	background-color: floralwhite;
+	margin-left:-7px;
+}
+
+#footer {
+	height: 8%;
+	width: 100%;
+}
+
+.myGrid {
+	width:98.5%;
+	height: 300px;
+	margin-left:5px;
+}
+#gridTest,#gridTest1 .ui-grid-cell-contents{
+	text-align:center;
+}
+.watermark {
+    position: absolute;
+    top: 50%;                    
+    transform: translateY(-50%); 
+    opacity: 0.75;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+}
+
+.md-button {    
+    text-transform: capitalize !important;
+}
+
+.carousel-indicators li{
+	background-color:orange;
+	border-color:#ff9200;
+}
+
+.carousel-indicators .active{
+	background-color:orange;
+	border-color:#ff9200;
+}
+
+md-dialog{
+	margin-left: 15%;
+}
+
+.navbar-inverse {
+    background-color: darkslategray;
+    border-color: darkslategray;
+    color:#fff;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: darkslategray;
+}
+
+.mainDivHeaderClass{
+	text-align: center;
+    background: cadetblue;
+    color: floralwhite;
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    width: 290px;
+    height:261px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: transparent;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 5px;
+    -webkit-box-shadow: 0 6px 6px rgba(0,0,0,0.175);
+    box-shadow: 0 6px 6px rgba(0,0,0,0.175);
+    background-clip: padding-box;
+}
+
+.autoComplete-dropdown{
+	font: inherit;
+	border-color: #ececec;
+	border-width: 1px;
+	width: 206px;
+	cursor: pointer;
+	position: absolute;
+	z-index: 9999;
+	top: 35px;
+	overflow-y: auto;
+	max-height: 206px;
+}
+
+.selectHeader .searchBoxHeader {
+	border: none;
+	outline: none;
+} 
+.selectHeader .selectHeaderChild {
+	 box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+	 padding-left: 10.667px;
+	 height: 48px;
+	 cursor: pointer;
+	 /* position: relative; */
+	 position: sticky; 
+	 top: 0;
+	 display: flex;
+	 width: auto; 
+	 /* position: fixed; */
+	 /* z-index: 10; */
+	 z-index: 1;
+	 background: white;
+	 width: 100%;
+}
+.optionScroll{
+	margin-top:0px;
+}
+.selectHeader .md-content._md {
+	max-height: 240px; 
+	   } 
+.md-dialog-container {
+	z-index: 100 !important;
+}	
+.md-select-menu-container {
+	z-index: 100 !important;
+}
+
+.md-dialog-custom-height {
+	max-height: 95% !important;
+}
+
+.md-content{
+	height: 1100px !important;
+}
+
+.selectdemoSelectHeader .demo-header-searchbox {
+	border: none;
+	outline: none;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+}
+
+.selectdemoSelectHeader .demo-select-header {
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+	padding-left: 10.667px;
+	height: 48px;
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: auto;
+}
+
+.selectdemoSelectHeader md-content._md {
+	max-height: 240px;
+}
+
+.leads-data {
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	float: left;
+	width: 100%;
+}
+
+.leads-data p {
+	float: left;
+	width: auto;
+	background: #ccc;
+	margin-right: 5px;
+	padding: 2px 2px;
+}
+
+.close-mdselect {
+	right: 9px;
+	position: absolute;
+	top: 17px;
+}
+
+.search-spacingleft {
+	height: 48px !important;
+	padding-left: 5px;
+}
+
+.header-spacing {
+	padding-left: 0px !important;
+}
+
+.ui-grid-canvas .ui-grid-cell-contents {
+    white-space: normal;
+}
+
+.mandatory:after {content: " *"; color: red; font-size: 15px;}
+md-select {
+    margin: 10px 0 6px !important;
+}
+
+.md-datepicker-input-container{
+	width: 160px;
+}
+.form-group td.Employee {
+    padding: 12px 25px 12px 0;
+} 
+.ui-grid-pager-panel{
+	background-color: floralwhite;
+}
+.activeMenu{
+	background-color: #312A25;
+}
+.manageGroup{
+	padding-left: 15px;
+	list-style: none;
+}
+.my-css-class{
+	margin-left: 20px;
+}
+.align-button{
+	margin-left: -2%;
+}

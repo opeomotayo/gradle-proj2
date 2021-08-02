@@ -1,0 +1,27 @@
+<md-dialog aria-label="Registration Template" style="width:440px;height:500px;">
+<form ng-cloak name="myForm">
+	<md-toolbar style="height:40px">
+	<div class="md-toolbar-tools"
+		style="background: cadetblue;">
+		<h2>Employee Registration</h2>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="cancel()"> <i
+			class="fa fa-times fa-2x"
+			style="margin-top: 5px; font-size: 1.5em; float: left"></i> </md-button>
+	</div>
+	</md-toolbar>
+
+	<md-dialog-content>
+	<div class="md-dialog-content">
+		<div class="form-group">
+			<div role="alert">
+				<span class="error" style="color: red;">Please contact HR to provide access to application</span>
+			</div>
+		</div>
+	</div>
+	</md-dialog-content>
+
+	<md-dialog-actions layout="row"> <md-button class="md-raised" ng-click="showRegAlert()" style="width:120px;background: cadetblue;color:white;">
+	Home </md-button> </md-dialog-actions>
+</form>
+</md-dialog>

@@ -1,0 +1,64 @@
+<div class="md-padding" id="popupContainer" ng-controller="employeesController"
+	ng-init="setPageDefaults();getEmployeeDetailsForAutocomplete();">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Employees Login Details
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="form-horizontal">
+		<div class="form-group">
+			<div class="form-inline">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+					<input type="text" ng-model="searchId" id="searchId"
+						placeholder="Employee ID/Name/Email ID" class="form-control" min-length="5" ng-keyup="autoComplete(searchId);" ng-blur="hideUlComponent()"/>
+					<ul class="list-group autoComplete-dropdown" ng-model="hidethis" ng-hide="hidethis">
+						<li class="list-group-item" ng-repeat="employeeData in filterEmployees" ng-click="fillTextbox(employeeData);">{{employeeData}}</li>
+					</ul>	
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<label class="" for="fromDate">From Date: <md-datepicker
+							ng-model="fromDate" md-placeholder="Enter date"
+							md-min-date="minDate" md-max-date="maxDate"
+							onkeydown="return false"
+							ng-change="validateDates(fromDate, 'FromDate')"></md-datepicker></label>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<label class="" for="toDate">To Date: <md-datepicker
+							ng-model="toDate" md-placeholder="Enter date"
+							md-min-date="minDate" md-max-date="maxDate"
+							onkeydown="return false"
+							ng-change="validateDates(toDate, 'ToDate')"></md-datepicker></label>
+				</div>
+				<div class="col-lg-2 col-md-2">
+					<label class="" for="submitBtn"><md-button
+							class="md-raised md-primary"
+							ng-click="getEmployeeData('click');"> <i
+							class="fa fa-search fa-1x"></i>
+						Search</md-button></label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group" ng-show="isVisible">
+			<div class="form-inline col-lg-12">
+				<span for="avgHrs"> <b>Average Login
+					hours:</b>&nbsp;&nbsp; </label>{{avgLoginHrs}}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="form-inline col-lg-12">
+				<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+					class="grid employees-login">
+					<div class="watermark" ng-show="!gridOptions.data.length">Search
+						by Employee ID/Name/Email ID</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<div class="md-padding" id="popupContainer" ng-controller="exportDataController">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Import Employee Data
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="form-horizontal">
+		<div class="form-group">
+			<div class="form-inline col-lg-12"
+				style="margin-left: 22%; margin-top: 5%;">
+				<div class="form-group col-lg-3">
+					<a class="md-raised md-primary md-button" href='javascript:;'> Choose File...
+						<input type="file" file-model="file"
+						style="position: absolute; z-index: 2; top: 0; left: 0; filter: alpha(opacity = 0); -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; background-color: transparent; color: transparent;"
+						name="file_source"
+						onchange="$('#upload-file-info').html($(this).val());">
+					</a> &nbsp; <span class='label label-info' id="upload-file-info"></span>
+				</div>
+				<div class="form-group col-lg-1"></div>
+				<div class="form-group col-lg-2">
+					<label class="" for="submitBtn"><md-button
+							class="md-raised md-primary"
+							ng-click="uploadFiles()"> <i
+							class="fa fa-download fa-2x"></i>
+						Import Data</md-button></label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

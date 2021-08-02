@@ -1,0 +1,20 @@
+<head>
+<style type="text/css">
+md-progress-circular.md-default-theme path, md-progress-circular path {
+stroke:orange;
+}
+.fa-spin { 
+-webkit-filter: blur(0); 
+}
+</style>
+</head>
+<md-dialog aria-label="Progress Template" id="progressTemplate">
+<form ng-cloak name="myForm">
+	<md-dialog-content>
+	<div class="md-dialog-content text-center">
+		<p> {{progressText}}</p>
+		<i class="fa fa-gear fa-spin fa-5x fa-fw"></i>
+	</div>
+	</md-dialog-content>
+</form>
+</md-dialog>

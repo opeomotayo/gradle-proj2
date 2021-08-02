@@ -1,0 +1,23 @@
+<div class="md-padding" id="popupContainer" ng-controller="reservedReportsController" ng-init="getReservedEnployeesData()">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Reserved Reports
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+					class="myGrid grid-full-view">
+					<div class="watermark" ng-show="!gridOptions.data.length">No
+						data available</div>
+				</div>
+			</div>
+		</div>
+</div>

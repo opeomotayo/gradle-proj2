@@ -1,0 +1,84 @@
+<div class="md-padding" id="popupContainer" ng-controller="reportsController">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Login Reports
+					<span class="right">
+							<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="form-horizontal">
+		<div class="form-group">
+			<div class="form-inline col-lg-12">
+				<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+					<input type="text" ng-model="searchId" id="searchId"
+						placeholder="Employee ID" class="form-control" min-length="5"
+						ng-blur="validateEmpId()" />
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<label class="" for="fromDate">From Date: <md-datepicker
+							ng-model="fromDate" md-placeholder="Enter date"
+							md-min-date="minDate" md-max-date="maxDate"
+							onkeydown="return false"
+							ng-change="validateDates(fromDate, 'FromDate')"></md-datepicker></label>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<label class="" for="toDate">To Date: <md-datepicker
+							ng-model="toDate" md-placeholder="Enter date"
+							md-min-date="minDate" md-max-date="maxDate"
+							onkeydown="return false"
+							ng-change="validateDates(toDate, 'ToDate')"></md-datepicker></label>
+				</div>
+				<div class="col-lg-2">
+					<label class="" for="submitBtn"><md-button
+							class="md-raised md-primary"
+							ng-click="generateReport()"> <i
+							class="fa fa-file-pdf-o fa-1x"></i>
+						Generate</md-button></label>
+				</div>
+			</div>
+
+		</div>
+		<div class="login-reports-page">
+			<div class="form-inline col-lg-12">
+			<div class="row">
+				<div class="form-group col-lg-2 col-md-4 col-sm-6 col-xs-12">
+					<label>Override Timings</label>
+					<input type="checkbox" ng-value="isOverride" ng-model="isOverride" ng-change="showOrHide()"/>
+				</div>
+			<div class="form-group col-lg-6">
+				 <div class="row">
+				 	<div class="form-group col-lg-6" ng-show="isOverride">
+						<label class="" for="fromTime">	From Time: <input type="time" ng-model="fromTime" id="Hours"
+							placeholder="HH:mm aa"/>
+						</label>
+					</div>
+					<div class="form-group col-lg-6" ng-show="isOverride">
+						<label class="" for="toTime">To Time: <input type="time" ng-model="toTime" id="Hours"
+						placeholder="HH:mm aa"/>
+						</label>
+					</div>
+				 </div>
+			</div>	
+			<div class="form-group col-lg-4 reports-btn">
+				<div excel-export export-data="exportData" file-name="{{fileName}}" ng-disabled = "!isDataAvailable"></div>
+				<button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c mb-10" ng-click="print(pdfUrl)" ng-disabled = "!isDataAvailable" > Save as PDF <i class="fa fa-download"></i></button>
+			</div>
+		</div>
+	   </div>
+     </div>
+		<div class="form-group">
+			<div class="form-inline col-lg-12">
+					<div class="wrapper col-lg-12" id="pdfReportPreview"
+						style="height: 415px; background-color: #888; overflow: scroll;">
+					<p id="reportMsg"
+						style="color: #fff; font-size: 1.35em; opacity: 0.5;text-align:center;vertical-align:middle;position:relative;top:50%;">
+						{{reportMsg}}</p>
+				</div>
+			</div>
+		</div>
+</div>

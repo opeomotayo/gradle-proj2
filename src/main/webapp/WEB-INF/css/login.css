@@ -1,0 +1,109 @@
+/* 	File Name:	login.css
+	Date	 :	22/08/2018
+	Author	 :	Vanavaraju A 
+*/
+.myteam-login {
+    overflow: hidden
+}
+.myteam-login .slider {
+    text-align: left;
+}
+.myteam-login .login {
+    background: #fff;
+    height: 100%;
+    padding: 0 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25%;
+    z-index: 10;
+    /* transform: translate(0, -50%); */
+}
+.myteam-login .login > div {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+/*.carousel-inner img {
+	background-size: cover;
+	height: 100vh;
+    width: 100%vw !important; 
+} */
+.carousel-inner .slide1, .slide2, .slide3, .slide4, .slide5 {
+	width: 75%;
+    height: 100vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.carousel-inner .slide1 {
+    background: url(../images/projectManagement.png) no-repeat;
+}
+.carousel-inner .slide2 {
+    background: url(../images/teamManagement.jpg) no-repeat;
+}
+.carousel-inner .slide3 {
+    background: url(../images/chartsReport.jpg) no-repeat;
+}
+.carousel-inner .slide4 {
+    background: url(../images/biometric.jpg) no-repeat;
+}
+.carousel-inner .slide5 {
+    background: url(../images/email.jpg) no-repeat;
+}
+.carousel-control {
+    border-radius: 15px;
+}
+.carousel-control.left, .carousel-control.right {
+    background: transparent;
+	border-radius: 0 !important;
+}
+.carousel-caption {
+	background: #000;
+	opacity: 0.8;
+	bottom: 0;
+	left: 0;
+	width: 75%;
+}
+.carousel-caption h3 {
+	margin: 0 0 10px 0;
+}
+.carousel-indicators {
+	bottom: 10px;
+	left: 0;
+	margin: 0;
+	width: 75%;
+}
+
+/* ===== For Mobile Devices ===== */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .myteam-login .login {
+        background: #fff;
+        border: 1px solid #00b4e5;
+        height: auto;
+        margin: 0;
+        padding: 30px;
+        position: absolute;
+        right: 50%;
+        top: 50%;
+        transform: translate(50%, -50%);
+        width: auto;
+    }
+    .myteam-login .login > div {
+        position: relative;
+        top: 0;
+        transform: translate(0, 0);
+    }
+    .carousel-inner .slide1, .slide2, .slide3, .slide4, .slide5, .carousel-caption, .carousel-indicators {
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .carousel-inner .slide1, .slide2, .slide3, .slide4, .slide5, .carousel-caption, .carousel-indicators {
+        width: 65%;
+    }
+    .myteam-login .login {
+        padding: 0 20px;
+        width: 35%;
+    }
+}

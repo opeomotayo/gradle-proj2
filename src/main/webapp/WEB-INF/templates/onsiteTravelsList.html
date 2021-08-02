@@ -1,0 +1,25 @@
+<div class="md-padding" id="popupContainer" ng-controller="travelController"
+	ng-init="getEmpVisas();getEmployeesToTeam();">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Manage Travels
+					<span class="right">
+						<md-button class="add-btn md-raised md-primary" ng-click="assignRole('Add', parentData)"> 
+						<i class="fa fa-plus-circle fa-1x"></i> Add Travel Request</md-button>
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="row col-lg-12">
+
+		<div id="gridTest" ui-grid="gridOptions"   ui-grid-pagination
+			class="grid" style="width:99%;height:380px;">
+			<div class="watermark" ng-show="!gridOptions.data.length">No
+				data available</div>
+		</div>
+	</div>
+</div>

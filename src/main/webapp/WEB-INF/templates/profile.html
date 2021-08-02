@@ -1,0 +1,277 @@
+<div class="md-padding my-profile" id="popupContainer" ng-controller="profileController" ng-init="getProfileData()">
+    <h1 class="no-padding">My Profile
+						<span class="right">
+                            <md-button ng-disabled = "!isResumeUploaded" class="add-btn md-raised md-primary" ng-click="download()"> <i class="fa fa-pencil-square-o fa-1x"></i> Download Resume
+        </md-button>
+        <md-button class="add-btn md-raised md-primary" ng-click="updateProfile()"> <i class="fa fa-pencil-square-o fa-1x"></i> Update Profile
+        </md-button>
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+						</span>
+	</h1>
+    <div class="row scroll-content">
+        <div class="col-lg-1">
+            <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
+        </div>
+        <div class="col-lg-5 col-xs-6">
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Employee ID</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.employeeId}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Employee Name</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.employeeName}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Email ID</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.emailId}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Designation</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.designation}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Role</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.role}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Mobile Number</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.mobileNumber}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Alt Mobile Number</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.alternateMobileNumber}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Personal EmailId</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.personalEmailId}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Shift</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.shift}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Primary Skill</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.baseTechnology}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Technologies Known</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.technologyKnown}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Work Location</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.empLocation}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Functional Org</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.functionalGroup}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Domain</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.domain}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Employment Type</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.employmentType}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Employment Status</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.empStatus}} {{profile.empSubStatus ?  "(" :  "" }}  {{profile.empSubStatus ?  profile.empSubStatus :  "" }} {{profile.empSubStatus ? ")"  :  "" }}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Date of Joining</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.dateOfJoining | date:'dd-MMM-yyyy'}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Passport Expiry Date</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.passportExpiryDate | date:'dd-MMM-yyyy'}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Date of Birth</b> <b class="right">:</b> 
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.dateOfBirth | date:'dd-MMM-yyyy'}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Country</b> <b class="right">:</b>
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.country}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <p>
+                        <b>Last Resume Uploaded</b> <b class="right">:</b>
+                    </p>
+                </div>
+                <div class="col-lg-7 col-xs-6">
+                    <p>
+                        {{profile.lastUpdateProfile | date:'dd-MMM-yyyy'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-xs-12"></div>
+</div>
+</div>

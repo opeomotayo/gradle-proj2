@@ -1,0 +1,44 @@
+
+<div class="md-padding" id="popupContainer" ng-controller="allocationChangeReportController" ng-init="getAllocationChangeData()">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Allocation Change Details
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="form-horizontal">
+		<div class="form-group">
+			<div class="form-inline">
+				<div class="col-lg-4 col-md-4">
+					<label class="" for="toDate">From Date: <md-datepicker ng-model="fromDate" md-placeholder="Enter date"
+						md-max-date="maxDate" onkeydown="return false"
+						ng-change="validateDates(fromDate, 'FromDate')"></md-datepicker></label>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<label class="" for="toDate">To Date: <md-datepicker ng-model="toDate" md-placeholder="Enter date"
+						md-max-date="maxDate" onkeydown="return false"
+						ng-change="validateDates(toDate, 'ToDate')"></md-datepicker></label>
+				</div>
+				<div class="col-lg-2 col-md-2">
+					<label class="" for="submitBtn"><md-button
+							class="md-raised md-primary"
+							ng-click="getAllocationChangeData('click');"> <i
+							class="fa fa-search fa-1x"></i>
+						Search</md-button></label>
+				</div>
+			</div>
+		</div>
+				<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+					class="mygrid allocation-change-report">
+					<div class="watermark" ng-show="!gridOptions.data.length">No
+						data available</div>
+
+		</div>
+	</div>
+</div>

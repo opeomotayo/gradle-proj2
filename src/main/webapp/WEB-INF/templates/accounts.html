@@ -1,0 +1,25 @@
+<div class="md-padding" id="Container" ng-controller="assignAccountsController"
+	ng-init="getAccountDetails()">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Manage Accounts
+					<span class="right">
+					<md-button class="md-raised md-primary add-btn"
+				ng-click="addAccount('Add', parentData)"> <i
+				class="fa fa-plus-circle fa-1x"></i> Add Account</md-button>	
+				<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination class=" myGrid manage-accounts grid-full-view">
+				<div class="watermark" ng-show="!gridOptions.data.length">No data available</div>
+			</div>
+		</div>
+	</div>
+</div>

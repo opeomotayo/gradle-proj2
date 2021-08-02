@@ -1,0 +1,105 @@
+<head>
+<script type="text/javascript">
+	$(function() {
+		//Preventing back, refresh button clicks of browser
+		$(window).on('beforeunload', function(){
+		    return false;
+		});
+		
+		//carousel auto rotation of images
+		$('.carousel').carousel({
+			interval : 2000
+		});
+		$('.carousel-control.right').trigger('click');
+		
+	});
+	function renderButton() {
+		gapi.load('auth2', function () {
+		    gapi.auth2.init({
+		        client_id: "685521475239-ujm7l2hkgrltk7loi8efl0ed702asm2r.apps.googleusercontent.com",
+		        //client_id: "951338644595-32q4i4n2rv4jevvteq77m7jpcq9sbrec.apps.googleusercontent.com",
+		        hosted_domain: 'nisum.com'
+		    });
+		});
+		gapi.signin2.render('my-signin2', {
+			'scope': 'profile email',
+			'width': 190,
+			'height': 40,
+			'longtitle': true,
+			'theme': 'dark',
+			'onsuccess': onSignIn,
+			'onfailure': onFailure
+		});
+	 }
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton"></script>
+	<meta name="google-signin-client_id" content="685521475239-ujm7l2hkgrltk7loi8efl0ed702asm2r.apps.googleusercontent.com">
+	<!--<meta name="google-signin-client_id" content="951338644595-32q4i4n2rv4jevvteq77m7jpcq9sbrec.apps.googleusercontent.com">-->
+
+
+
+<link rel="stylesheet" href="css/login.css" />
+</head>
+<div class="myteam-login" ng-controller="loginController" id="popupContainer">
+	<div class="slider">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="3"></li>
+				<li data-target="#myCarousel" data-slide-to="4"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+			<div class="item active">
+					<div class="bgslides slide1"></div>
+					<div class="carousel-caption">
+						<h3>Project Management</h3>
+						<p>Application will help for project management and tracking!!!</p>
+					</div>
+				</div>
+					<div class="item">
+					<div class="bgslides slide2"></div>
+					<div class="carousel-caption">
+						<h3>Teams</h3>
+						<p>Application provide detail about team</p>
+					</div>
+				</div>
+					<div class="item">
+					<div class="bgslides slide3"></div>
+					<div class="carousel-caption">
+						<h3>Reports</h3>
+						<p>Application provide detail reports on projects and resource utilization</p>
+					</div>
+				</div>
+				<div class="item ">
+					<div class="bgslides slide4"></div>
+					<div class="carousel-caption">
+						<h3>Biometric Integration</h3>
+						<p>Application is integrated with Biometric system to track
+							employee login hours!!!</p>
+					</div>
+				</div>
+				<div class="item">
+						<div class="bgslides slide5"></div>
+					<div class="carousel-caption">
+						<h3>Mail Notification</h3>
+						<p> Provides the option of sending email notifications !!!</p>
+					</div>
+				</div>
+			</div>
+			<!-- Left and right controls -->
+			<a class="left carousel-control" data-slide="prev"> </a> 
+			<a class="right carousel-control" data-slide="next"> </a>
+		</div>
+	</div>
+	<div class="login">
+		<div align="center">
+			<img class="img img-rounded" alt="MyTeam Logo" src="images/myteam.png" /> <br><br>
+			<div id="my-signin2"></div>
+		</div>
+	</div>
+</div>

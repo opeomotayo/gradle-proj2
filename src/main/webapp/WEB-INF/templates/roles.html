@@ -1,0 +1,33 @@
+<div class="md-padding" id="popupContainer" ng-controller="assignRoleController"
+	ng-init="getUserRoles()">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-6"> 
+				<h1 class="no-padding">Manage Employees</h1>
+			</div>
+			<div class="col-lg-6 add-emp no-padding">
+				<span>
+					<input type="radio" ng-model="status" value="Active" ng-click="getUserRoles()"> Active 
+					<input type="radio" ng-model="status" value="In Active" ng-click="getUserRoles()"> Inactive
+<!-- 					<input type="radio" ng-model="status" value="Vacation" ng-click="getUserRoles()"> Vacation
+					<input type="radio" ng-model="status" value="Resigned" ng-click="getUserRoles()"> Resigned -->
+					<input type="radio" ng-model="status" value="all" ng-click="getUserRoles()"> All
+				</span>
+				<label class="" for="submitBtn"> </label>
+				<md-button
+						class="md-raised md-primary"
+						ng-click="assignRole('Add', parentData)"> <i
+						class="fa fa-plus-circle fa-2x"></i> Add Employee</md-button>
+					<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination class="myGrid grid-full-view">
+				<div class="watermark" ng-show="!gridOptions.data.length">No data available</div>
+			</div>
+		</div>
+	</div>
+</div>

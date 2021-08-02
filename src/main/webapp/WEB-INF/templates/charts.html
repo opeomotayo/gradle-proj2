@@ -1,0 +1,74 @@
+<html>      
+<body>
+
+<div class="md-padding"
+	id="popupContainer" ng-controller="chartsController" ng-init="getAllOptions()">
+
+	<div class="row">
+		<div class ="col-lg-6 col-md-6">
+			<hc-pie-chart title="Browser usage" data="pieData"  options="chartOptions">Placeholder for pie chart</hc-pie-chart>
+	   </div>
+	   <div class="col-lg-6 col-md-6 select-report-date-container">
+	   		<div class="row add-space">
+	   			<div class="col-lg-4 col-md-4"></div>
+	   			<div class= "col-lg-8 col-md-8">
+	   				<div class="row">
+	   					<label class="col-lg-4 report-search-date-label" for="searchedDate">Select Date: <span class="mandatory"></span></label>
+	   					<md-datepicker class="col-lg-8 search-report-date"
+							ng-model="searchedReportDate" md-placeholder="Select Date"
+							 md-max-date="maxReportDate"
+							onkeydown="return false">
+					   </md-datepicker>
+	   				</div>
+	   			</div>
+	   	  </div>
+	   	 <div class="row">
+   			  <div class="col-lg-4 col-md-4"></div>
+	   				<div class="col-lg-8 col-md-8 select-report-type">
+	   					<div class="row">
+	   						<label class="col-lg-4 col-md-4 report-type-label" for="reportType">Report Type: <span class="mandatory"></span></label>
+ 							<md-select class="col-lg-7 col-md-7"  ng-model="reportType" #ref 
+ 								class="report-type-selectbox">
+                       			<md-optgroup label="Report Types ">
+                           			<md-option ng-value="reportType"
+                            			ng-repeat="reportType in reportTypeList">Billability : {{reportType}}
+                            		</md-option>
+                       			</md-optgroup>
+                   			</md-select>
+	   					</div>
+	   			 </div>
+	   		</div>
+	   	  <div class="row">
+	   	  	<div class="col-lg-4 col-md-4"></div>
+	   	  	<div class="col-lg-8 col-md-3">
+	   	  		<div class="row">
+	   	  			  <md-button
+							class="col-lg-3 md-raised md-primary search-report-btn"
+							ng-click="getBillabilityReportData('click');"> <i
+							class="fa fa-search fa-1x"></i>
+						Search
+					</md-button>
+	   	  		</div>
+
+	   		  </div>
+	   	  </div>
+	   	  <div class="row alert-container">
+	   	  	 <div role="alert" class="col-sm-9 error-msg">
+				<span ng-if="errorMessage" class="error" style="color: red; text-align:left;">{{alertMsg}}</span>
+			</div>
+	   	  </div>
+	  </div>
+   </div>
+		<div class="row col-lg-12">
+		<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+			class="myGrid utilization-report">
+			<div class="watermark" ng-show="!gridOptions.data.length">No
+				data available</div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+
+</html>

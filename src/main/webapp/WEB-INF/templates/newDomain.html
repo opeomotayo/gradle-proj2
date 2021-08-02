@@ -1,0 +1,81 @@
+<md-dialog aria-label="Role Template" style="width:520px;height:450px;">
+<form ng-cloak name="myForm">
+	<md-toolbar>
+	<div class="md-toolbar-tools" style="background: cadetblue;">
+		<h2>{{templateTitle}} Domain</h2>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="cancel()"> <i
+			class="fa fa-times fa-2x"
+			style="margin-top: 5px; font-size: 1.5em; float: left"></i> </md-button>
+	</div>
+	</md-toolbar>
+
+	<md-dialog-content>
+	<div class="md-dialog-content">
+		<div class="form-group">
+			<div class="row">
+				<table width="450px">
+					<tr>
+						<td colspan="4"><b>Account</b></td>
+						<td colspan="8"><md-select ng-model="AccountInfo" ng-disabled= "isDisabled"
+								md-selected-text="getAccountText()" id="AccountInfo"> <md-optgroup
+								label="AccountInfo"> <md-option ng-value="account1"
+								ng-repeat="account1 in accounts" >{{account1.accountName}}</md-option>
+							</md-optgroup> </md-select></td>
+					</tr>
+					<tr>
+						<td colspan="4"><b>Domain Name</b></td>
+						<td colspan="8"><input type="text" class="form-control"
+							id="domainName" name="domainName" ng-model="domainName"
+							placeholder="Domain Name" ng-disabled="false" /></td>
+					</tr>
+
+					<tr>
+						<td colspan="4"><b>Delivery Lead</b></td>
+						<td colspan="8" id="lead">
+							<div class="leads-data" ng-show="employeeModel.length > 0">
+								<div ng-repeat="item in employeeModel">
+									<p>
+										{{item.employeeName}} <span
+											ng-click="removeSelectedLead(item)"
+											class="glyphicon glyphicon-remove"></span>
+									</p>
+								</div>
+							</div> <div
+								style="display: block; float: left; width: 100%;">
+							<md-select class="lead-search" ng-model="employeeModel"
+								data-md-container-class="selectHeader"
+								md-selected-text="getSelectedText()" ng-change="persistSelections(employeeModel)"  id="selectDeliveryLeads"
+								multiple> <md-select-header
+								class="selectHeaderChild header-spacing" layout="column">
+							<input ng-model="searchTerm" type="search"
+								ng-keydown="updateSearch($event)"
+								ng-model-options="{debounce: {'default': 500, 'blur': 0}}"
+								placeholder="Please Search for a lead"
+								class="searchBoxHeader demo-header-searchbox md-text search-spacingleft" />
+							<span class="glyphicon glyphicon-remove close-mdselect"
+								ng-click="closeSelectBox()"></span> </md-select-header> 
+								<md-optgroup class="optionScroll"
+								label="Employee"> 
+									<md-option ng-value="employee" ng-repeat="employee in employeeList | filter:searchFilter" ng-selected="ifEmployeeNameExists(employee.employeeName)">{{employee.employeeName}}</md-option>
+							</md-optgroup> </md-select> </div>
+						</td>
+					</tr>
+				</table>
+
+				<div role="alert">
+					<span class="error" style="color: red;">{{alertMsg}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	</md-dialog-content>
+
+	<md-dialog-actions layout="row"> <md-button
+		class="md-raised" data-ng-click="validateFields(templateTitle)"
+		style="width:120px;background: cadetblue;color:white;">
+	{{templateTitle}} </md-button> <md-button class="md-raised" ng-click="cancel()"
+		style="width:120px;background: cadetblue;color:white;">
+	Cancel </md-button> </md-dialog-actions>
+</form>
+</md-dialog>

@@ -1,0 +1,71 @@
+
+<div class="md-padding" id="popupContainer" ng-controller="attendanceReportController" ng-init="getEmployeePresent('onload')">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Attendance Details
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="">
+		<div class="row">
+			<div class="col-lg-2 col-xs-6">
+				<p>
+					<b>Search Date:</b>
+				</p>
+			</div>
+			<div class="col-lg-3 col-xs-6">
+				<p>
+					<md-datepicker ng-model="reportDate" md-placeholder="Enter date" md-max-date="maxDate"
+					onkeydown="return false" ng-change="setSearchDate(reportDate)"></md-datepicker>
+				</p>
+			</div>
+			<div class="col-lg-2 col-xs-4">
+				<p><b>Select Shift:</b></p>
+			</div>
+			<div class="col-lg-2 col-xs-4">
+				<md-select ng-model="shiftValue" md-selected-text="getSelectedShift()" id="shiftValue" style="margin:0px;">
+					<md-optgroup label="shifts"> 
+						<md-option ng-value="shiftValue" ng-repeat="shiftValue in shifts">{{shiftValue}}</md-option> 
+					</md-optgroup> 
+				</md-select>
+			</div>
+			<div class="col-lg-2 col-xs-4">
+				<md-button class="md-raised md-primary" ng-click="getEmployeePresent('onclick')">
+				<i class="fa fa-search fa-1x"></i> Search</md-button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="">
+			<div class="col-lg-2 col-xs-4">
+				<p>
+					<b>Total Present:</b> {{totalPresent}}
+				</p>
+			</div>
+			<div class="col-lg-3 col-xs-4">
+				<p>
+					<b>Total Absent:</b> {{totalAbsent}}
+				</p>   
+			</div>
+			</div> 
+			<div class="col-lg-4 ">  
+			<p><input  type="radio" name="attend" ng-model="attendenceType" value="both" ng-click="getAttendanceReport(attendenceType)"> All    
+			<input  type="radio" name="attend" ng-model="attendenceType" value="present" ng-click="getAttendanceReport(attendenceType)"> Present  
+			<input type="radio" name="attend" ng-model="attendenceType" value="absent" ng-click="getAttendanceReport(attendenceType)"> Absence 
+			</p>
+			</div>
+		</div>
+		<div class="row col-lg-12" style="height: 15px;"></div>
+	</div>
+	<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+		class="myGrid manage-attendance-report grid-half-view">
+		<div class="watermark" ng-show="!gridOptions.data.length">No
+			data available</div>
+	</div>
+</div>
+     

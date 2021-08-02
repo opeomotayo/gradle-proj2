@@ -1,0 +1,206 @@
+<div class="md-padding" style="width: 100%; padding: 3px 0px 0px 0px;"
+	id="popupContainer333" ng-controller="assignRoleController"
+	ng-init="getUserRoles()">
+<script type="text/javascript">
+/* document.addEventListener('DOMContentLoaded', function () {
+	alert('called')
+
+    var options = {
+        chart: {
+            type: 'pie'
+        },
+        series: [{}]
+    };
+
+
+    Highcharts.ajax({
+        url: '/myTime/reports/functioNalGroup',
+        success: function(data) {
+        	alert("fg data"+data)
+            options.series[0].data = data;
+            Highcharts.Chart('container1Pie', options);
+        }
+    });
+
+}); */
+var result;
+function requestData() {
+    alert('requestData');
+  
+    Highcharts.ajax({
+        url: '/myTime/reports/functioNalGroup',
+        success: function(data) {
+        	alert("fg data"+data)
+         	result = data;
+       	 alert('requestData result'+result);
+      
+        }
+    });
+	/* $http({
+        method : "GET",
+        url :  "/myTime/reports/functioNalGrou"
+    }).then(function mySuccess(response) {
+    	result = response.data;
+    	 alert('requestData result'+result);
+    }, function myError(response) {
+    	 alert('requestData error');
+    	   
+    	result = [];
+    }); */
+
+}
+Highcharts.chart('container1Pie', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie',
+    },
+    title: {
+        text: 'Browser market shares in January, 2018'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+  
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        },
+        series: {
+            cursor: 'pointer',
+            point: {
+			events: {
+                click: function () {
+                	alert('this.series.name'+this.series.name);
+                 alert('	this.category111'+	this.options.name);
+                    
+                
+                                      // tableFilter(this.series.name,this.category,this.y);
+                }
+            }
+          }
+		  }
+    },
+    series: [{
+        name: 'Functional Group',
+        colorByPoint: true,
+        data: result
+    }]
+});
+
+var gridOptionsReport = {
+		paginationPageSizes : [ 10, 20, 30, 40, 50, 100],
+		paginationPageSize : 10,
+	    pageNumber: 1,
+		pageSize:10,
+		enableFiltering: true,
+		columnDefs : [ 
+			{field : 'employeeId',displayName: 'Employee ID', enableColumnMenu: true, enableSorting: true,enableFiltering: true, width:120},
+			{field : 'employeeName',displayName: 'Name', enableColumnMenu: false, enableSorting: false,enableFiltering: true},
+			{field : 'mobileNumber',displayName: 'Mobile', enableColumnMenu: false, enableSorting: false,enableFiltering: false},
+			{field : 'emailId',displayName: 'Email', enableColumnMenu: false, enableSorting: false,enableFiltering: true},
+			{field : 'baseTechnology',displayName: 'Skill', enableColumnMenu: false, enableSorting: false,enableFiltering: true},
+			{field : 'designation',displayName: 'Designation', enableColumnMenu: false, enableSorting: true,enableFiltering: true}, 
+			{field : 'role',displayName: 'Role', enableColumnMenu: false, enableSorting: true,enableFiltering: true, width:100}, 
+			{name : 'Actions', displayName: 'Actions',cellTemplate: getCellTemplate, enableColumnMenu: false, enableSorting: false,enableFiltering: false, width:100} 
+		]
+	};
+/* Highcharts.chart('companyfunctionalGroupReport', {
+
+    title: {
+        text: 'Solar Employment Growth by Sector, 2010-2016'
+    },
+
+    subtitle: {
+        text: 'Source: thesolarfoundation.com'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of Employees'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+        }
+    },
+
+    series: [{
+        name: 'Installation',
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+    }, {
+        name: 'Manufacturing',
+        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+    }, {
+        name: 'Sales & Distribution',
+        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+    }, {
+        name: 'Project Development',
+        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+    }, {
+        name: 'Other',
+        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+}); */
+
+
+</script><button ng-click="getUserRoles()">click Me</button>
+<md-button class="md-icon-button" ng-click="getUserRoles()"> <i
+			class="fa fa-times fa-2x"
+			style="margin-top: 5px; font-size: 1.5em; float: left">ReportData</i> </md-button>
+<table>
+<tr>
+    <td><div id="gridTest1" ui-grid="gridOptionsReport" ui-grid-pagination 
+			class="" style="width:99%;height:370px;margin-left:0px;">
+			<div class="watermark" ng-show="!gridOptionsReport.data.length">No
+				data available</div>
+
+		</div></td>
+  
+  </tr>
+  <tr>
+    <td><div id="container1Pie" style="width:99%;height:370px;margin-left:0px;min-width: 800px;
+	max-width: 800px;">
+			</div></td>
+  </tr>
+  
+</table>
+
+		</div>
+
+		

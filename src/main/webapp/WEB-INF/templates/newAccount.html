@@ -1,0 +1,83 @@
+<md-dialog aria-label="Account Template" style="width:520px;height:500px;" >
+<form ng-cloak name="myForm" ng-init="getDeliveryManagers()">
+	<md-toolbar>
+	<div class="md-toolbar-tools"
+		style="background: cadetblue;">
+		<h2>{{templateTitle}} Account </h2>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="cancel()"> <i
+			class="fa fa-times fa-2x"
+			style="margin-top: 5px; font-size: 1.5em; float: left"></i> </md-button>
+	</div>
+	</md-toolbar>
+	<md-dialog-content>
+	<div class="md-dialog-content">
+		<div class="form-group">
+		<div class="row" >
+		<table width="450px">
+			<td colspan="4">
+			<b >Account Name</b></td>
+			<td colspan="8">
+		    <!-- 	<md-input-container class="md-block"> -->
+			<input type="text" class="form-control" id="accountName" name="accountName"  placeholder="Account Name" ng-blur="duplicateAccNameValidation()"
+				ng-model="accountName" />
+			<!-- 	</md-input-container> -->
+			{{accountValidationMessage}}	
+			</td>
+			</tr>
+			<tr>
+			<td colspan="4">
+			<b >Industry Type</b></td>
+			<td colspan="8">
+			<md-select ng-model="industryType"
+				md-selected-text="getIndustryTypeSelected()" id="industryType" name="industryType" >
+			<md-optgroup label="Industry Type"> <md-option
+				ng-value="industryType" ng-repeat="industryType in industryTypesList">{{industryType}}</md-option>
+			</md-optgroup> </md-select>
+			</td>
+			</tr>
+			<tr>
+			<td colspan="4">
+			<b >Client Address</b></td>
+			<td colspan="8">
+			<!-- <md-input-container class="md-block"> -->
+            <textarea ng-model="clientAddress" id="clientAddress" name="clientAddress" placeholder = "Please enter the client address" style="width:100%" md-select-on-focus></textarea>
+            <!-- </md-input-container> -->
+			</td>
+			</tr>
+			<tr>
+			<td colspan="4">
+			<b >Delivery Managers</b></td>
+			<td id="lead" colspan="8">
+            	<div class="leads-data" ng-show="managersSelectedList.length > 0">
+                 	<div ng-repeat="item in managersSelectedList">
+                     	<p> {{item.employeeName}} <span ng-click="removeSelectedLead(item,$event)" class="glyphicon glyphicon-remove"></span> </p> 
+                     </div>     
+                </div>
+                <div style="display: block; float: left; width: 100%;">
+                	<md-select ng-model="managersSelectedList" data-md-container-class="selectHeader" name="deliveryManagers" id="selectManager" multiple="" md-selected-text="getSelectedLead()" ng-change="persistSelections()">                                           
+                    	<md-select-header class="selectHeaderChild header-spacing" layout="column">
+                        	<input ng-model="searchTerm" type="search" id="search" ng-keydown="updateSearch($event)" ng-model-options="{debounce: {'default': 500, 'blur': 0}}"  placeholder="Please Search for a manager"  class="searchBoxHeader demo-header-searchbox md-text search-spacingleft" />
+                        	  <span class="glyphicon glyphicon-remove close-mdselect" ng-click="closeSelectBox()"></span>
+                        </md-select-header>
+                         <md-optgroup label="managers" class="optionScroll">
+                         	<md-option ng-value="manager" ng-repeat="manager in managerDetails | filter:searchFilter" ng-selected="ifEmployeeNameExists(manager.employeeName)">{{manager.employeeName}}</md-option>
+                         </md-optgroup>
+                    </md-select>    
+                 </div> 
+             </td>
+		</tr>
+		</table>
+		</div>     
+			<div role="alert">
+				<span class="error" style="color: red;">{{alertMsg}}</span>
+			</div>
+		</div>
+	</div>
+	</md-dialog-content>
+	<md-dialog-actions layout="row"> <md-button
+		class="md-raised md-accent" id = "addButton" data-ng-click="validateFields(templateTitle)" ng-disabled="addButtonvisible" style="width:120px;background: cadetblue;color:white;">
+	{{templateTitle}} </md-button> <md-button class="md-raised" ng-click="cancel()" style="width:120px;background: cadetblue;color:white;">
+	Cancel </md-button> </md-dialog-actions>
+</form>
+</md-dialog>

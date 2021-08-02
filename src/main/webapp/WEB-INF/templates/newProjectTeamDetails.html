@@ -1,0 +1,43 @@
+<md-dialog aria-label="Team Details" style="width:950px;height:auto;" class="md-dialog-custom-height" ng-init="getEmployeeDetails()" id="projectTeamDetails" >
+        <form ng-cloak name="myForm ">
+            <md-toolbar>
+                <div class="md-toolbar-tools " style="background: cadetblue; ">
+                    <h2>Team Details </h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button " ng-click="cancelDialog() ">
+                        <i class="fa fa-times fa-2x " style="margin-top: 5px; font-size: 1.5em; float: left "></i>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            
+            <md-content style="height:400px !important">
+                        <md-content class="md-padding " style="padding: 10px;">
+                            <md-dialog-content>
+                                <div class="md-dialog-content ">
+                                    <div class="form-group ">
+                                        <div class="row col-lg-12 " style="margin-left: 0px; ">
+                                            <div class="row col-lg-12 col-xs-12 ">
+                                                <div class="col-xs-6 text-left ">
+                                                    <p>
+                                                        <b>Project Name:</b> {{projectName}}
+                                                    </p>
+                                                </div>
+                                                <div class="col-xs-6 text-right ">
+                                                    <p>
+                                                        <b>Delivery Lead: </b><span ng-repeat="dl in deliveryLeads">{{dl.employeeName}}<span ng-hide="$last">,</span></span>
+                                                    </p>
+                                                </div>
+    
+                                            </div>
+    
+                                            <div id="gridTest " ui-grid="gridOptions " ui-grid-pagination style="width:99%;height:230px;margin-left:10px; ">
+                                                <div class="watermark " ng-show="!gridOptions.data.length ">No data available</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-dialog-content>
+                        </md-content> 
+            </md-content>
+        </form>
+    </md-dialog> 

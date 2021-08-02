@@ -1,0 +1,51 @@
+
+<div class="md-padding" id="popupContainer" ng-controller="dashboardController"
+	ng-init="getEmployeesDashBoardData('onload')">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Dashboard
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="row col-lg-12">
+		<div class="col-lg-4" style="float: left;padding-left:20px;">
+		<!-- 	<md-button class="md-raised md-primary"
+				style="width:182px;background: cadetblue;"
+				ng-click="getUnAssignedEmployees('UnAssigned', parentData)"> <i
+				class="fa fa-crosshairs fa-2x"
+				style="margin-top: 5px; font-size: 1.5em; float: left"></i>Bench Employees</md-button> -->
+		</div>
+		<div class="col-lg-4" style="float: left;padding-left:20px;">
+		<!-- 	<md-button class="md-raised md-primary"
+				style="width:182px;background: cadetblue;"
+				ng-click="getAllocatedEmployees('allocated', parentData)"> <i
+				class="fa fa-product-hunt fa-2x"
+				style="margin-top: 5px; font-size: 1.5em; float: left"></i>Project Allocations</md-button> -->
+		</div>
+		<div class="col-lg-1"
+			style="cursor: pointer; float: right; right: 75px;">
+			<!-- <md-button class="md-raised md-primary"
+				style="width:142px;background: cadetblue;"
+				ng-click="addProject('Assign', parentData)"> <i
+				class="fa fa-plus-circle fa-2x"
+				style="margin-top: 5px; font-size: 1.5em; float: left"></i> Add
+			Project</md-button> -->
+		</div>
+	</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+					class="myGrid grid-full-view">
+					<div class="watermark" ng-show="!gridOptions.data.length">No
+						data available</div>
+				</div>
+			</div>
+		</div>
+</div>
+	

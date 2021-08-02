@@ -1,0 +1,33 @@
+<div class="md-padding" id="manage-designation" ng-controller="designationsController"
+    ng-init="getDesignationsWithEmployeeCount()">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <h1 class="no-padding">Manage Designations
+                <span class="right">
+                    <span style="font-size: 16px;">
+                        <input type="radio" ng-model="recordsToShow" value="All"
+                            ng-click="showRecords(recordsToShow)"> All
+                        <input type="radio" ng-model="recordsToShow" value="Active"
+                            ng-click="showRecords(recordsToShow)"> Active
+                        <input type="radio" ng-model="recordsToShow" value="Inactive"
+                            ng-click="showRecords(recordsToShow)"> Inactive
+                    </span>
+                    <md-button class="add-btn md-raised md-primary" ng-click="showAddDesignationDialog()">
+                        <i class="fa fa-plus-circle"></i> Add Designation</md-button>
+                </span></h1>
+        </div>
+
+    </div>
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="gridTest" ui-grid="gridOptions" ui-grid-pagination class="myGrid manage-designation-grid">
+                    <div class="watermark" ng-show="!gridOptions.data.length">No
+                        data available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

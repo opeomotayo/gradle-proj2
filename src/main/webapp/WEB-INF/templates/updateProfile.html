@@ -1,0 +1,54 @@
+<md-dialog aria-label="Role Template" style="width:400px;">
+<form ng-cloak name="myForm">
+	<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h2>Update Profile </h2>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="cancel()"> <i
+			class="fa fa-times fa-1x"></i> </md-button>
+	</div>
+	</md-toolbar>
+<md-dialog-content>
+	<div class="md-dialog-content">
+
+	<div class="form-group">
+	
+			<input type="text" class="form-control" id="mobileNumber" name="mobileNumber"
+				ng-model="mobileNumber" placeholder="Mobile Number" alt="Mobile Number"/> <br>
+			<input type="text" class="form-control" id="alternateMobileNumber" name="alternateMobileNumber"
+				ng-model="alternateMobileNumber" placeholder="Alternate Mobile Number" /> <br>
+			<input type="text" class="form-control" id="personalEmailId" name="personalEmailId"
+				ng-model="personalEmailId" placeholder="Personal EmailId" /> <br>
+			<md-select ng-model="baseTechnology"  md-selected-text="getSelectedTech()" id="baseTechnology" >
+			<md-optgroup label="skills"> <md-option ng-value="tech"
+				ng-repeat="tech in technologies">{{tech}}</md-option> </md-optgroup> </md-select>
+			<textarea rows="4" cols="10" class="form-control" id="technologyKnown" name="technologyKnown"
+				ng-model="technologyKnown" placeholder="Technologies Known" />
+
+		<md-dialog-actions layout="row">
+	<md-button class="md-raised" data-ng-click="validateFields()">	Update </md-button>
+	<md-button class="md-raised" ng-click="cancel()"> Cancel </md-button> </md-dialog-actions>
+				<div class= "file-upload-section">
+				<label>Upload Resume: </label>
+				<div class="row col-lg-12">
+					<div class="row col-lg-11">
+						<input type="file" file-model="file"  class="form-control" id="uploadFile" name="uploadFile" ng-model="uploadFile" placeholder="Upload Profile" multiple/>
+					</div>
+					
+					<div class="row col-lg-1">
+						<!-- <md-button class="md-raised" data-ng-click="uploadFile()">Upload </md-button> -->
+							 <i class="fa fa-upload upload-resume-icon" data-toggle="tooltip" title="Upload" onmouseenter="$(this).tooltip()" data-ng-click="uploadFile()"></i>
+					</div>
+				</div>
+			</div>
+			<div role="alert">
+				<span class="error" style="color: red;">{{alertMsg}}</span>
+			</div>
+		</div>
+	
+</md-dialog-content>
+
+
+
+</form>
+</md-dialog>

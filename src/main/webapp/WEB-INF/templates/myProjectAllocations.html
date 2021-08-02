@@ -1,0 +1,26 @@
+<div class="md-padding" id="popupContainer" ng-controller="myProjectAllocationsController"
+	ng-init="getMyProjectAllocations()">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">My Project Allocations
+					<a class="right"><i class="fa fa-refresh" aria-hidden="true"
+					ng-click="refreshPage()"></i></a>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<p><b>List of your current and previous project allocations: </b></p>
+		</div>
+		<div class="col-lg-12">
+			<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination
+				class="myGrid grid-full-view project-allocation">
+				<div class="watermark" ng-show="!gridOptions.data.length">No
+					data available</div>
+			</div>
+		</div>
+	</div>
+</div>

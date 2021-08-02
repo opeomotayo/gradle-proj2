@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+
+
+            <springProfile name="development">
+                <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+            </springProfile>
+
+
+            <springProfile name="qa">
+                <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+            </springProfile>
+
+
+            <springProfile name="production">
+                <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+            </springProfile>
+
+            <!-- If no active profile is set-->
+            <springProfile name="default">
+                <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+            </springProfile>
+
+        </encoder>
+    </appender>
+
+
+    <!-- <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>/var/lib/Applications/myTeam/logs/myTeam-app.log</file>
+        <file>/Users/nisum/Desktop/myTeamLogs/myTeam-app.log</file>
+
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+
+            <springProfile name="development">
+                <Pattern>
+                    %d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n
+                </Pattern>
+
+            </springProfile>
+
+            <springProfile name="qa">
+                <Pattern>
+                    %d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n
+                </Pattern>
+            </springProfile>
+
+            <springProfile name="production">
+                <Pattern>
+                    %d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n
+                </Pattern>
+            </springProfile>
+            <springProfile name="default">
+                <Pattern>
+                    %d{dd-MM-yyyy HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n
+                </Pattern>
+            </springProfile>
+
+        </encoder>
+    </appender> -->
+
+
+    <springProfile name="default">
+        <root level="INFO">
+            <appender-ref ref="consoleAppender"/>
+            <!-- <appender-ref ref="fileAppender"/> -->
+            fileAppender
+        </root>
+    </springProfile>
+
+
+    <springProfile name="development">
+        <root level="INFO">
+            <appender-ref ref="consoleAppender"/>
+            <!-- <appender-ref ref="fileAppender"/> -->
+        </root>
+    </springProfile>
+
+    <springProfile name="qa">
+        <root level="INFO">
+            <appender-ref ref="consoleAppender"/>
+            <!-- <appender-ref ref="fileAppender"/> -->
+        </root>
+    </springProfile>
+
+    <springProfile name="production">
+        <root level="INFO">
+            <appender-ref ref="consoleAppender"/>
+            <!-- <appender-ref ref="fileAppender"/> -->
+        </root>
+    </springProfile>
+
+
+</configuration>

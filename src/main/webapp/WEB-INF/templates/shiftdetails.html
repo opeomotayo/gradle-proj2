@@ -1,0 +1,57 @@
+<div class="md-padding" id="popupContainer" ng-controller="shiftDetailsController"
+	ng-init="getShiftDetails()">
+	<div class="container-fluid mainDivHeaderClass">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="no-padding">Shift Details
+					<span class="right">
+						<i class="fa fa-refresh" aria-hidden="true" ng-click="refreshPage()"></i>
+					</span>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	
+	<div class="">
+	
+	<div class="row">
+		<div class="col-lg-2 col-xs-3">
+				<p>
+					<b>Select Shift:</b>
+					</p>
+			</div>
+			<div class="col-lg-3 col-xs-6">
+				<p>
+					
+					<md-select ng-model="shiftValue" md-selected-text="getSelectedShift()" id="shiftValue" style="margin:0px;">
+			<md-optgroup label="shifts"> <md-option ng-value="shiftValue"
+				ng-repeat="shiftValue in shifts">{{shiftValue}}</md-option> </md-optgroup> </md-select>
+				</p>
+			</div>
+			<div class="col-lg-2 col-xs-3">
+				<md-button class="md-raised md-primary" ng-click="getShiftDetails()">
+				<i class="fa fa-search fa-1x"></i> Search</md-button>
+			</div>
+			<div class="col-lg-2"></div>
+		</div>
+	
+	<div class="row col-lg-12">
+			<div class="col-lg-12 col-xs-12 text-left">
+				<p>
+					The following <b>{{shiftCount}}</b> employees  work in the shift:<b> {{selectedshiftValue}}</b> 
+				</p>
+			</div>
+			
+		</div>
+		</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="gridTest" ui-grid="gridOptions" ui-grid-pagination ui-grid-exporter
+				class="myGrid grid-half-view">
+				<div class="watermark" ng-show="!gridOptions.data.length">No
+					data available</div>
+			</div>
+		</div>
+	</div>
+</div>
